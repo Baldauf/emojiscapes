@@ -1,0 +1,31 @@
+.icon {
+  width: 24px;
+  height: 24px;
+  
+  &.icon--copy-logo {
+    width: 130px;
+    height: 80px;
+  }
+
+  &.icon--food {
+    width: 23.96px;
+  }
+
+  &.icon--places-travel {
+    width: 18.11px;
+  }
+
+  &.icon--objects {
+    width: 25.66px;
+  }
+
+  &.icon--symbols {
+    height: 20.79px;
+    
+  }
+
+  &.icon--flags {
+    width: 17px;
+    height: 25px;
+  }
+}
