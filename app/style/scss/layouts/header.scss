@@ -6,6 +6,12 @@
 //------------------------------------------------------------------------------
 // Header
 .page-header {
-  @include flex(row, center, center);
+  @include flex(column, center, center);
   height: $height--full-header;
+
+  .page-header__link {
+    display: block;
+    font-family: $font-mono;
+    text-align: center;
+  }
 }

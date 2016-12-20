@@ -1,0 +1,72 @@
+//------------------------------------------------------------------------------
+// Abstract
+
+%filter-focus {
+  background: rgba($black, 0.1);
+  border-radius: 4px;
+}
+
+
+//------------------------------------------------------------------------------
+// Filters
+.grid {
+  @include position-center(absolute, both);
+  background: #ccc;
+  max-width: 80vw;
+  width: 260px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.grid__item {
+  width: 80px;
+  height: 80px;
+  background: red;
+  justify-self: center;
+}
+
+.a {
+  background: blue;
+}
+
+
+.grid-controls {
+  & > div {
+    @include flex(column, center, center);
+    @include position-center(absolute, both);
+    width: 40px;
+    height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .grid-controls__grow {
+    font-size: 18px;
+  }
+
+  .grid-controls__shrink {
+    font-size: 14px;
+    color: #ccc;
+  }
+
+  .grid-controls__top {
+    transform: rotate(0deg);
+  }
+
+  .grid-controls__right {
+    transform: rotate(90deg);
+  }
+
+  .grid-controls__bottom {
+    transform: rotate(180deg);
+  }
+
+  .grid-controls__left {
+    transform: rotate(-90deg);
+  }
+}

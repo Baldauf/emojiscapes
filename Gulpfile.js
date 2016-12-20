@@ -1,25 +1,50 @@
 var gulp = require('gulp')
+  , browserify = require('browserify')
+  , source = require('vinyl-source-stream')
   , sass = require('gulp-sass')
   , rename = require('gulp-rename')
+  , prefix = require('gulp-autoprefixer')
   , browserSync = require('browser-sync').create()
   , gulpHelp = require('gulp-help')
   , svgSprite = require('gulp-svg-sprite');
 
 gulp = gulpHelp(gulp);
 
+
+//------------------------------------------------------------------------------
+// Path configs
+
 var paths = {
-  scss: 'style/scss/**/*.scss',
-  scssMain: 'style/scss/main.scss',
-  svg: 'svg/',
-  css: 'style/css'
+  js        : 'app/js/**/*.js',
+  jsApp     : 'app/js/app.js',
+  jsBuild   : 'build/js',
+  scss      : 'app/style/scss/**/*.scss',
+  scssMain  : 'app/style/scss/main.scss',
+  svg       : 'app/svg/',
+  css       : 'build/css'
 };
+
+
+//------------------------------------------------------------------------------
+// Build Tasks
+
+gulp.task('build-js', function() {
+  return browserify(paths.jsApp)
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest(paths.jsBuild));
+});
 
 gulp.task('build-scss', 'builds the css un-minified', function() {
   return gulp.src(paths.scssMain)
     .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(prefix({browsers: ['last 2 versions']}))
     .pipe(gulp.dest(paths.css))
     .pipe(browserSync.stream());
 });
+
+gulp.task('build', ['build-js', 'build-scss'])
+
 
 gulp.task('svgsprite', function () {
   config = {
@@ -37,10 +62,22 @@ gulp.task('svgsprite', function () {
       .pipe(gulp.dest(paths.svg));
 })
 
-gulp.task('watch', 'watch all scss and compile changes with livereload', function() {
+
+//------------------------------------------------------------------------------
+// Watch Tasks
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch(paths.js, ['build-js'])
   gulp.watch(paths.scss, ['build-scss'])
   gulp.watch(paths.svg + '**/*.svg', ['svgsprite'])
 });
+
+
+
+//------------------------------------------------------------------------------
+// Serve Tasks
+
+// Serve emojiscapes at localhost:3000 and reload/recompile on changes
 
 gulp.task('serve', ['watch'], function() {
   browserSync.init({
