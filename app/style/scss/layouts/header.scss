@@ -14,4 +14,8 @@
     font-family: $font-mono;
     text-align: center;
   }
+
+  & &__scene {
+    font-size: 30px;
+  }
 }

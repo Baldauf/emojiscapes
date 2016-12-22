@@ -22,19 +22,25 @@
     </div>
     <div class="page__body">
       <div class="grid">
-        <div class="grid__item a"></div>
-        <div class="grid__item b"></div>
-        <div class="grid__item c"></div>
-        <div class="grid__item d"></div>
-        <div class="grid__item e"></div>
-        <div class="grid__item f"></div>
-        <div class="grid__item g"></div>
-        <div class="grid__item h"></div>
-        <div class="grid__item i"></div>
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
       </div>
       <div class="grid-controls">
         <div class="grid-controls__top">
-          <div class="grid-controls__grow">↑</div>
+          <div class="grid-controls__grow">⇧</div>
           <div class="grid-controls__shrink">↓</div>
         </div>
         <div class="grid-controls__right">
@@ -50,7 +56,10 @@
           <div class="grid-controls__shrink">↓</div>
         </div>
       </div>
-      <div class="copy-scape"></div>
+      <div class="copy-scape">
+        <svg class="copy-scape__icon">
+          <use xlink:href="app/svg/symbol/sprite.svg#clipboard" />
+        </svg>
     </div>
   </div>
   <script src="./build/js/bundle.js"></script>

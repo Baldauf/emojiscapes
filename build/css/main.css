@@ -416,7 +416,7 @@ html, body {
 .page__body {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 170px);
 }
 
 .page-header {
@@ -437,12 +437,15 @@ html, body {
   text-align: center;
 }
 
+.page-header .page-header__scene {
+  font-size: 30px;
+}
+
 .grid {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #ccc;
   max-width: 80vw;
   width: 260px;
   margin: 0 auto;
@@ -454,30 +457,37 @@ html, body {
   grid-row-gap: 10px;
 }
 
-.grid__item {
-  width: 80px;
+.grid__row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 10px;
+}
+
+.grid__column {
+  -ms-flex-preferred-size: 33%;
+      flex-basis: 33%;
   height: 80px;
-  background: red;
-  justify-self: center;
+  margin-right: 10px;
+  background: #344160;
 }
 
 .a {
   background: blue;
 }
 
+.grid-controls {
+  height: 100%;
+  background: rgba(52, 65, 96, 0.05);
+}
+
 .grid-controls > div {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
 }
@@ -488,27 +498,74 @@ html, body {
 
 .grid-controls .grid-controls__grow {
   font-size: 18px;
+  text-align: center;
+  background: rgba(52, 65, 96, 0.1);
 }
 
 .grid-controls .grid-controls__shrink {
   font-size: 14px;
   color: #ccc;
+  text-align: center;
+  background: rgba(52, 65, 96, 0.05);
 }
 
 .grid-controls .grid-controls__top {
-  transform: rotate(0deg);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .grid-controls .grid-controls__right {
-  transform: rotate(90deg);
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) rotate(90deg);
 }
 
 .grid-controls .grid-controls__bottom {
-  transform: rotate(180deg);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .grid-controls .grid-controls__left {
-  transform: rotate(-90deg);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.copy-scape {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 120px;
+  height: 120px;
+  background: #FFFFFF;
+  background-image: linear-gradient(-180deg, transparent 0%, rgba(0, 0, 0, 0.02) 98%);
+  border: 1px solid rgba(151, 151, 151, 0.6);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 -4px 0 0 rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+.copy-scape:hover {
+  cursor: pointer;
+}
+
+.copy-scape:active {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05), inset 0 -2px 0 0 rgba(0, 0, 0, 0.06);
+}
+
+.copy-scape__icon {
+  width: 100%;
+  height: 50px;
+  fill: rgba(52, 65, 96, 0.9);
 }
 
 body {
