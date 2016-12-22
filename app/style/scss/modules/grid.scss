@@ -1,0 +1,87 @@
+//------------------------------------------------------------------------------
+// Abstract
+
+$_rand : random(100);
+
+//------------------------------------------------------------------------------
+// Grid
+.grid {
+  @include position-center(absolute, both);
+  max-width: 80vw;
+  width: 260px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.grid__row {
+  @include flex(row, space-between, center);
+  margin-bottom: 10px;
+}
+
+.grid__column {
+  flex-basis: 33%;
+  height: 80px;
+  margin-right: 10px;
+  background: rgba($black, $_rand);
+}
+
+
+.a {
+  background: blue;
+}
+
+
+.grid-controls {
+  height: 100%;
+  background: rgba($black, 0.05);
+  & > div {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .grid-controls__grow {
+    font-size: 18px;
+    text-align: center;
+    background: rgba($black, 0.1);
+  }
+
+  .grid-controls__shrink {
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+    background: rgba($black, 0.05);
+  }
+
+  .grid-controls__top {
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  .grid-controls__right {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .grid-controls__bottom {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+  }
+
+  .grid-controls__left {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-90deg);
+  }
+}

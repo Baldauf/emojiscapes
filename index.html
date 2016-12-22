@@ -1,24 +1,67 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Emojiscapes</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Emojiscapes</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-        <link rel="stylesheet" href="style/css/main.css">
-    </head>
-    <body>
-
-        <p>
-&nbsp; 🚊 &nbsp; &nbsp; &nbsp;<br/>
-&nbsp; / &nbsp; \ &nbsp; &nbsp; &nbsp;<br/>
-&nbsp; &nbsp; / &nbsp; &nbsp; &nbsp; \ 🐢👜</p>
-
- <span>emojiscapes...hopping on board soon</span>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    </body>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="./build/css/main.css">
+</head>
+<body>
+  <div class="page">
+    <div class="page__header">
+      <div class="page-header">
+        <div class="page-header__scene">
+          🎄🎄🐢🎄🎄
+        </div>
+        <span class="page-header__link">emojiscapes.com</span>
+      </div>
+    </div>
+    <div class="page__body">
+      <div class="grid">
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
+        <div class="grid__row">
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+          <div class="grid__column"></div>
+        </div>
+      </div>
+      <div class="grid-controls">
+        <div class="grid-controls__top">
+          <div class="grid-controls__grow">⇧</div>
+          <div class="grid-controls__shrink">↓</div>
+        </div>
+        <div class="grid-controls__right">
+          <div class="grid-controls__grow">↑</div>
+          <div class="grid-controls__shrink">↓</div>
+        </div>
+        <div class="grid-controls__bottom">
+          <div class="grid-controls__grow">↑</div>
+          <div class="grid-controls__shrink">↓</div>
+        </div>
+        <div class="grid-controls__left">
+          <div class="grid-controls__grow">↑</div>
+          <div class="grid-controls__shrink">↓</div>
+        </div>
+      </div>
+      <div class="copy-scape">
+        <svg class="copy-scape__icon">
+          <use xlink:href="app/svg/symbol/sprite.svg#clipboard" />
+        </svg>
+    </div>
+  </div>
+  <script src="./build/js/bundle.js"></script>
+</body>
 </html>
