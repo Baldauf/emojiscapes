@@ -1,9 +1,66 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var $ = require("jquery");
+var $ = require("jquery"),
+    SCAPE = [];
 
 $(document).ready(function() {
-    console.groupCollapsed("Loading Emojiscapes...");
+    //console.groupCollapsed("Loading Emojiscapes...");
+// array to track copied
+
+function makeScape(numRows) {
+  var rows = 0,
+      row = $('.grid__row');
+
+  row.each(function() {
+    var that = $(this).find('.grid__content').html();
+    SCAPE.push(that);
+  });
+
+  return SCAPE;
+}
+
+function makeExport(scape) {
+  var blerg = scape.toString();
+  console.log(blerg)
+}
+
+makeScape(numRows);
+var copy = makeExport(SCAPE);
+
+function numRows() {
+  var x = 0,
+      row = $('.grid__row');
+  row.each(function() {
+    x += 1;
+  });
+
+  return x;
+}
+
+function sizeRows(num) {
+  var row = $('.grid__row');
+  row.css( "height", "calc(" + 100 / num + "% - 10px)" );
+}
+
+function numCols() {
+  var x = 0;
+  $('.grid__row--a').find('.grid__column').each(function() {
+    x += 1;
+  });
+
+  return x;
+}
+
+// size things:
+var numRows = numRows(),
+    sizeRows = sizeRows(numRows),
+    numCols = numCols();
+
+// click on gridcolumn -> open modal
+
+// click on modal item -> update content in gridcolumn
+
 });
+
 },{"jquery":2}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.1.1

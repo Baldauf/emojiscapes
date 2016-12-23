@@ -448,6 +448,8 @@ html, body {
   transform: translate(-50%, -50%);
   max-width: 80vw;
   width: 260px;
+  height: 80%;
+  max-height: 100%;
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
@@ -470,11 +472,32 @@ html, body {
 }
 
 .grid__column {
+  position: relative;
   -ms-flex-preferred-size: 33%;
       flex-basis: 33%;
-  height: 80px;
+  height: 100%;
   margin-right: 10px;
-  background: #344160;
+  background: rgba(52, 65, 96, 0.025);
+  border: 1px solid rgba(151, 151, 151, 0.6);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), inset 0 -2px 0 0 rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+}
+
+.grid__column:hover {
+  cursor: pointer;
+}
+
+.grid__column:active {
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.025), inset 0 -1px 0 0 rgba(0, 0, 0, 0.03);
+}
+
+.grid__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  line-height: 1;
 }
 
 .a {

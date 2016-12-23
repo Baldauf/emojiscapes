@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 // Abstract
 
-$_rand : random(100);
+$_rand : random();
 
 //------------------------------------------------------------------------------
 // Grid
@@ -9,6 +9,8 @@ $_rand : random(100);
   @include position-center(absolute, both);
   max-width: 80vw;
   width: 260px;
+  height: 80%;
+  max-height: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -22,10 +24,28 @@ $_rand : random(100);
 }
 
 .grid__column {
+  position: relative;
   flex-basis: 33%;
-  height: 80px;
+  height: 100%;
   margin-right: 10px;
-  background: rgba($black, $_rand);
+  background: rgba($black, 0.025);
+  border: 1px solid rgba(151,151,151,0.60);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.05), inset 0 -2px 0 0 rgba(0,0,0,0.06);
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,0.025), inset 0 -1px 0 0 rgba(0,0,0,0.03);
+  }
+}
+
+.grid__content {
+  @include position-center(absolute, both);
+  font-size: 20px;
+  line-height: 1;
 }
 
 
