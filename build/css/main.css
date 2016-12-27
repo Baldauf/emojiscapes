@@ -591,6 +591,75 @@ html, body {
   fill: rgba(52, 65, 96, 0.9);
 }
 
+.char-modal {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(243, 245, 249, 0.95);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.char-modal.char-modal--show {
+  z-index: 3;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+
+.char-modal__chars {
+  width: 80vw;
+  font-size: 30px;
+}
+
+.char-modal__mojo:hover {
+  cursor: pointer;
+}
+
+#char-modal__close {
+  text-shadow: initial;
+  box-shadow: initial;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 60px;
+  right: 60px;
+  border-radius: 50%;
+  background: rgba(52, 65, 96, 0.9);
+}
+
+#char-modal__close:hover {
+  background: #344160;
+}
+
+#char-modal__close:before, #char-modal__close:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 1px;
+  left: 15px;
+  background: white;
+}
+
+#char-modal__close:before {
+  transform: rotate(45deg);
+}
+
+#char-modal__close:after {
+  transform: rotate(-45deg);
+}
+
 body {
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;

@@ -1,11 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var $         = require("jquery"),
     clipboard = require("clipboard"),
+    CURREDIT  = '',
     SCAPE     = [];
 
 $(document).ready(function() {
   //console.groupCollapsed("Emojiscapes comin attcha");
-  // array to track copied
 
   // ------------------------------------------------------
   // GET row/column data
@@ -54,7 +54,7 @@ $(document).ready(function() {
   // STORE column data
   // ------------------------------------------------------
 
-  function sizeScape(NUMROWS, NUMCOLS) {
+  function sizeScape() {
     for(var i = 0; i < NUMROWS; i++) {
       SCAPE[i] = new Array(NUMCOLS);
     }
@@ -62,7 +62,7 @@ $(document).ready(function() {
     return SCAPE;
   }
 
-  function makeScape(NUMROWS, NUMCOLS) {
+  function makeScape() {
     var currRow = 0,
         currCol = 0;
         row = $('.grid__row'),
@@ -86,11 +86,48 @@ $(document).ready(function() {
     return SCAPE;
   }
 
-  sizeScape(NUMROWS, NUMCOLS);
-  makeScape(NUMROWS, NUMCOLS);
+  sizeScape();
+  makeScape();
 
   // ------------------------------------------------------
-  // Update Copy Data
+  // Choose Column Data / Char Modal
+  // ------------------------------------------------------
+
+  function openModal() {
+    var modal = $('.char-modal');
+    modal.addClass('char-modal--show');
+  }
+
+  function closeModal() {
+    var modal = $('.char-modal');
+    modal.removeClass('char-modal--show');
+  }
+
+  function changeChar(char) {
+    newContent = $(char).html()
+    CURREDIT.find('.grid__content').html(newContent);
+
+    closeModal();
+  }  
+
+  $('.grid__column').click(function() {
+    openModal();
+    CURREDIT = $(this);
+  });
+
+  $('#char-modal__close').click(function() {
+    closeModal();
+  })
+
+  $('.char-modal__mojo').click(function() {
+    changeChar(this);
+    makeScape();
+  })
+
+  
+
+  // ------------------------------------------------------
+  // Update column data
   // ------------------------------------------------------
 
 
@@ -144,13 +181,17 @@ $(document).ready(function() {
     });
   }
 
+  // ------------------------------------------------------
+  // Trigger Copy
+  // ------------------------------------------------------
+
   // update copy content and copy dat
   $('.copy-scape').click(function(e){
     updateData(this);
     copyScape()
   });
 
-// newline  + rm commas in copy export
+
 // click on gridcolumn -> open modal
 // click on modal item -> update content in gridcolumn
 
