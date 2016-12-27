@@ -1,58 +1,137 @@
-var $ = require("jquery"),
-    SCAPE = [];
+var $         = require("jquery"),
+    clipboard = require("clipboard"),
+    SCAPE     = [];
 
 $(document).ready(function() {
-    //console.groupCollapsed("Loading Emojiscapes...");
-// array to track copied
+  console.groupCollapsed("Emojiscapes comin attcha");
+  // array to track copied
 
-function makeScape(numRows) {
-  var rows = 0,
-      row = $('.grid__row');
+  // ------------------------------------------------------
+  // GET row/column data
+  // ------------------------------------------------------
 
-  row.each(function() {
-    var that = $(this).find('.grid__content').html();
-    SCAPE.push(that);
+  function numRows() {
+    var x = 0,
+        row = $('.grid__row');
+    row.each(function() {
+      x += 1;
+    });
+
+    console.log('There are now ' + x + ' rows');
+
+    return x;
+  }
+
+  function numCols() {
+    var x = 0;
+    $('.grid__row--a').find('.grid__column').each(function() {
+      x += 1;
+    });
+
+    console.log('There are now ' + x + ' columns');
+
+    return x;
+  }
+
+  var NUMROWS = numRows(),
+      NUMCOLS = numCols();
+
+
+  // ------------------------------------------------------
+  // SIZE row/columns
+  // ------------------------------------------------------
+
+  function sizeRows(num) {
+    var row = $('.grid__row');
+    row.css( "height", "calc(" + 100 / num + "% - 10px)" );
+  }
+
+  var SIZEROWS = sizeRows(NUMROWS);
+
+
+  // ------------------------------------------------------
+  // STORE column data
+  // ------------------------------------------------------
+
+  function sizeScape(NUMROWS, NUMCOLS) {
+    for(var i = 0; i < NUMROWS; i++) {
+      SCAPE[i] = new Array(NUMCOLS);
+    }
+
+    return SCAPE;
+  }
+
+  function makeScape(NUMROWS, NUMCOLS) {
+    var currRow = 0,
+        currCol = 0;
+        row = $('.grid__row'),
+        column = '.grid__column';
+
+    row.each(function(i, v) {
+      var cols = $(this).find(column);
+
+      $.each(cols, function(i, v) {
+        var char = $(this).find('.grid__content').html();
+        SCAPE[currRow][currCol] = char;
+        currCol += 1;
+      });
+
+      currCol = 0;      
+      currRow += 1;
+    });
+
+    console.log(SCAPE)
+
+    return SCAPE;
+  }
+
+  sizeScape(NUMROWS, NUMCOLS);
+  makeScape(NUMROWS, NUMCOLS);
+
+  // ------------------------------------------------------
+  // Update Copy Data
+  // ------------------------------------------------------
+
+
+  // ------------------------------------------------------
+  // Copy dat
+  // ------------------------------------------------------
+
+  // Send scape to string
+  function createExport(scape) {
+    var stringScape = scape.toString();
+    return stringScape;
+  }
+
+  // update dom data for copying from scape string
+  function updateData(self) {
+    var copy = createExport(SCAPE);
+    $(self).attr('data-clipboard-text', copy);
+
+    return self;
+  }
+
+  // create copy obj and copy
+  function copyScape() {
+    clip = new clipboard('.copy-scape');
+    clip.on('success', function(e) {
+      console.info('Action:', e.action);
+      console.info('Text:', e.text);
+      console.info('Trigger:', e.trigger);
+      e.clearSelection();
+    });
+
+    clip.on('error', function(e) {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+    });
+  }
+
+  // update copy content and copy dat
+  $('.copy-scape').click(function(e){
+    updateData(this);
+    copyScape()
   });
-
-  return SCAPE;
-}
-
-function makeExport(scape) {
-  var blerg = scape.toString();
-  console.log(blerg)
-}
-
-makeScape(numRows);
-var copy = makeExport(SCAPE);
-
-function numRows() {
-  var x = 0,
-      row = $('.grid__row');
-  row.each(function() {
-    x += 1;
-  });
-
-  return x;
-}
-
-function sizeRows(num) {
-  var row = $('.grid__row');
-  row.css( "height", "calc(" + 100 / num + "% - 10px)" );
-}
-
-function numCols() {
-  var x = 0;
-  $('.grid__row--a').find('.grid__column').each(function() {
-    x += 1;
-  });
-
-  return x;
-}
-
-// size things:
-var numRows = numRows(),
-    sizeRows = sizeRows(numRows),
-    numCols = numCols();
 
 // click on gridcolumn -> open modal
 
