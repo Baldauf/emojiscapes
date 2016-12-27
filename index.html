@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./build/css/main.css">
 </head>
 <body>
-  <div class="page">
+  <div class="page page--prep">
     <div class="page__header">
       <div class="page-header">
         <div class="page-header__scene">
@@ -22,7 +22,20 @@
     </div>
     <div class="page__body">
       <div class="grid">
-        <div class="grid__row grid__row--a">
+        <div class="scape-create">
+          <label id="scape-create__rows">
+            <span>Rows</span>
+            <input type="number" placeholder="2">
+          </label>
+          <label id="scape-create__columns">
+            <span>Columns</span>
+            <input type="number" placeholder="4">
+          </label>
+          <a href="#" class="scape-create__btn">Create</a>
+        </div>
+      </div>
+      <!-- <div class="grid">
+        <div class="grid__row">
           <div class="grid__column">
             <div class="grid__content">🌴</div>
           </div>
@@ -64,10 +77,10 @@
             <div class="grid__content">🌊</div>
           </div>
         </div>
-      </div>
-      <!-- <div class="grid-controls">
+      </div> -->
+      <div class="grid-controls">
         <div class="grid-controls__top">
-          <div class="grid-controls__grow">⇧</div>
+          <div class="grid-controls__grow">↑</div>
           <div class="grid-controls__shrink">↓</div>
         </div>
         <div class="grid-controls__right">
@@ -82,12 +95,13 @@
           <div class="grid-controls__grow">↑</div>
           <div class="grid-controls__shrink">↓</div>
         </div>
-      </div> -->
+      </div>
       <div class="copy-scape" data-clipboard-text="😅">
         <svg class="copy-scape__icon">
           <use xlink:href="app/svg/symbol/sprite.svg#clipboard" />
         </svg>
       </div>
+      <div class="copy-msg">copied 😜 &nbsp;</div>
       <div class="char-modal">
         <div class="char-modal__search">
           <div class="modal-search">

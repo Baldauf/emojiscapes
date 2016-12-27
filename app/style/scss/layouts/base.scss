@@ -18,6 +18,18 @@ html, body {
 .page {
   height: 100%;
   @include flex(column, center, center);
+
+  &--prep {
+    .copy-scape,
+    .copy-msg,
+    .grid-controls {
+      display: none;
+    }
+
+    .scape-create {
+      display: flex;
+    }
+  }
 }
 
 .page__header {

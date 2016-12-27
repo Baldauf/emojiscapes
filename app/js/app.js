@@ -43,62 +43,104 @@ function numCols() {
   return x;
 }
 
+function sizeScape() {
+  for(var i = 0; i < NUMROWS; i++) {
+    SCAPE[i] = new Array(i);
+    var scape = SCAPE[i];
+    for(j = 0; j < NUMCOLS; j++) {
+      SCAPE[i][j] = j;
+    }
+  }
+
+  console.log(NUMROWS)
+  console.log(NUMCOLS)
+  console.log(SCAPE)
+
+  return SCAPE;
+}
+
+function makeScape() {
+  var currRow = 0,
+      currCol = 0;
+      row = $('.grid__row'),
+      column = '.grid__column';
+
+  row.each(function(i, v) {
+    var cols = $(this).find(column);
+
+    $.each(cols, function(i, v) {
+      var char = $(this).find('.grid__content').html();
+      SCAPE[currRow][currCol] = char;
+      currCol += 1;
+    });
+
+    currCol = 0;      
+    currRow += 1;
+  });
+
+  console.log(SCAPE)
+
+  return SCAPE;
+}
+
 $(document).ready(function() {
   //console.groupCollapsed("Emojiscapes comin attcha");
+
+  // ------------------------------------------------------
+  // BUILD row/column data
+  // ------------------------------------------------------
+  function buildRows() {
+    var setRows = $('#scape-create__rows').find('input'),
+        setRowsVal = setRows.attr('placeholder');
+
+    if (setRows.val() != ''){
+        setRowsVal = setRows.val();
+    }
+
+    console.log('There are now ' + setRowsVal + ' rows');
+
+    return setRowsVal;
+  }
+
+  function buildCols() {
+    var setCols = $('#scape-create__columns').find('input'),
+        setColsVal = setCols.attr('placeholder');
+
+    if (setCols.val() != ''){
+        setColsVal = setCols.val();
+    }
+
+    console.log('There are now ' + setColsVal + ' columns');
+    
+    return setColsVal;
+  }
+  
+  $('.scape-create__btn').click(function(){
+    NUMROWS  = buildRows();
+    NUMCOLS  = buildCols();
+    var SIZEROWS = sizeThings(NUMROWS, NUMCOLS);
+
+    sizeScape();
+    // makeScape();
+  });
+
 
   // ------------------------------------------------------
   // GET row/column data
   // ------------------------------------------------------
 
-  var NUMROWS = numRows(),
-      NUMCOLS = numCols();
+  // var NUMROWS = numRows(),
+  //     NUMCOLS = numCols();
 
 
   // ------------------------------------------------------
   // SIZE row/columns
   // ------------------------------------------------------
 
-  var SIZEROWS = sizeThings(NUMROWS, NUMCOLS);
-
 
   // ------------------------------------------------------
   // STORE column data
   // ------------------------------------------------------
-
-  function sizeScape() {
-    for(var i = 0; i < NUMROWS; i++) {
-      SCAPE[i] = new Array(NUMCOLS);
-    }
-
-    return SCAPE;
-  }
-
-  function makeScape() {
-    var currRow = 0,
-        currCol = 0;
-        row = $('.grid__row'),
-        column = '.grid__column';
-
-    row.each(function(i, v) {
-      var cols = $(this).find(column);
-
-      $.each(cols, function(i, v) {
-        var char = $(this).find('.grid__content').html();
-        SCAPE[currRow][currCol] = char;
-        currCol += 1;
-      });
-
-      currCol = 0;      
-      currRow += 1;
-    });
-
-    console.log(SCAPE)
-
-    return SCAPE;
-  }
-
-  sizeScape();
-  makeScape();
 
   // ------------------------------------------------------
   // Choose Column Data / Char Modal
@@ -208,6 +250,17 @@ $(document).ready(function() {
     });
   }
 
+  function flashCopyBtn(e) {
+    var btn  = $('.copy-scape'),
+        clas = 'copy-scape--copied';
+
+    btn.addClass(clas);
+
+    setTimeout(function() {
+      btn.removeClass(clas);
+    }, 2000);
+  }
+
   // ------------------------------------------------------
   // Trigger Copy
   // ------------------------------------------------------
@@ -215,11 +268,11 @@ $(document).ready(function() {
   // update copy content and copy dat
   $('.copy-scape').click(function(e){
     updateData(this);
-    copyScape()
+    copyScape();
+    flashCopyBtn(this);
   });
 
 // resize rows / columns
-// search mojis
-// more mojis
+// add/rm rows/cols
 
 });

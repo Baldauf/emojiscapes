@@ -1,0 +1,34 @@
+//------------------------------------------------------------------------------
+// Abstract
+
+$_copy-size: 120px;
+$_copy-offset: 25px;
+
+//------------------------------------------------------------------------------
+// scape-create
+
+.scape-create {
+  @include flex(column, center, center);
+  display: none;
+
+
+
+  span {
+    display: inline-block;
+    width: 100px;
+  }
+
+  input {
+    width: 100px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  ::-webkit-input-placeholder {
+    color: $black;
+    font-family: $font-mono;
+    font-size: 18px;
+    text-align: center;
+  }
+}
