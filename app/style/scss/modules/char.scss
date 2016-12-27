@@ -1,0 +1,39 @@
+//------------------------------------------------------------------------------
+// Abstract
+
+
+
+//------------------------------------------------------------------------------
+// Emoji
+.char {
+  @include flex(row, space-between, center);
+  flex-wrap: wrap;
+  max-width: $width--emojis;
+  margin: 0 auto;
+
+  .char-modal__mojo {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+      background: rgba($black, 0.1);
+      border-radius: 4px;
+
+      .char__mojo-tones {
+        display: block;
+      }
+    }
+
+    &:active {
+      background: lighten($black, 65%);
+    }  
+  }
+
+  &.char--widescreen {
+    max-width: calc(100% - 100px);
+  }
+}

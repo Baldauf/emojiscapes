@@ -1,7 +1,47 @@
 var $         = require("jquery"),
     clipboard = require("clipboard"),
     CURREDIT  = '',
-    SCAPE     = [];
+    SCAPE     = [],
+    NUMROWS   = 0,
+    NUMCOLS   = 0;
+
+function sizeThings(rows, cols) {
+  var row       = $('.grid__row'),
+      col       = $('.grid__column'),
+      chars     = $('.grid__content'),
+      colWidth  = 0;
+      colHeight = 0;
+
+  row.css( "height", "calc(" + 100 / rows + "% - 10px)" );
+
+  colHeight = row.height();
+  colWidth = colHeight + 'px';
+  col.css("width", colWidth);
+  chars.css("font-size", colHeight / 4 + 'px');
+}
+
+function numRows() {
+  var x = 0,
+      row = $('.grid__row');
+  row.each(function() {
+    x += 1;
+  });
+
+  console.log('There are now ' + x + ' rows');
+
+  return x;
+}
+
+function numCols() {
+  var x = 0;
+  $('.grid__row--a').find('.grid__column').each(function() {
+    x += 1;
+  });
+
+  console.log('There are now ' + x + ' columns');
+
+  return x;
+}
 
 $(document).ready(function() {
   //console.groupCollapsed("Emojiscapes comin attcha");
@@ -9,29 +49,6 @@ $(document).ready(function() {
   // ------------------------------------------------------
   // GET row/column data
   // ------------------------------------------------------
-
-  function numRows() {
-    var x = 0,
-        row = $('.grid__row');
-    row.each(function() {
-      x += 1;
-    });
-
-    console.log('There are now ' + x + ' rows');
-
-    return x;
-  }
-
-  function numCols() {
-    var x = 0;
-    $('.grid__row--a').find('.grid__column').each(function() {
-      x += 1;
-    });
-
-    console.log('There are now ' + x + ' columns');
-
-    return x;
-  }
 
   var NUMROWS = numRows(),
       NUMCOLS = numCols();
@@ -41,12 +58,7 @@ $(document).ready(function() {
   // SIZE row/columns
   // ------------------------------------------------------
 
-  function sizeRows(num) {
-    var row = $('.grid__row');
-    row.css( "height", "calc(" + 100 / num + "% - 10px)" );
-  }
-
-  var SIZEROWS = sizeRows(NUMROWS);
+  var SIZEROWS = sizeThings(NUMROWS, NUMCOLS);
 
 
   // ------------------------------------------------------
@@ -116,18 +128,34 @@ $(document).ready(function() {
 
   $('#char-modal__close').click(function() {
     closeModal();
-  })
+  });
 
   $('.char-modal__mojo').click(function() {
     changeChar(this);
     makeScape();
-  })
+  });
 
-  
+  // Modal Search
+  $('#search').keyup(function() {
+    var keyword = $(this).val().toLowerCase();
 
-  // ------------------------------------------------------
-  // Update column data
-  // ------------------------------------------------------
+    // rebuild on keystroke
+    $('.category').removeClass('category--hide');
+
+    // simple search toggle
+    $('.char-modal__mojo').each( function() {
+      $(this).toggle( keyword.length < 1 || $(this).attr('data-models').indexOf(keyword) > -1 );
+    });
+
+    // hide categories if no results
+    $('.char').each( function() {
+      if($(this).children(':visible').length == 0) {
+        $(this).parent().addClass('category--hide');
+      } else {
+        $(this).parent().removeClass('category--hide');
+      }
+    })
+  });
 
 
   // ------------------------------------------------------
@@ -190,8 +218,8 @@ $(document).ready(function() {
     copyScape()
   });
 
-
-// click on gridcolumn -> open modal
-// click on modal item -> update content in gridcolumn
+// resize rows / columns
+// search mojis
+// more mojis
 
 });
