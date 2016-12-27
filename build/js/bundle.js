@@ -4,7 +4,7 @@ var $         = require("jquery"),
     SCAPE     = [];
 
 $(document).ready(function() {
-  console.groupCollapsed("Emojiscapes comin attcha");
+  //console.groupCollapsed("Emojiscapes comin attcha");
   // array to track copied
 
   // ------------------------------------------------------
@@ -98,9 +98,25 @@ $(document).ready(function() {
   // Copy dat
   // ------------------------------------------------------
 
-  // Send scape to string
+  // Chunk String at num columns
+  function chunk(str, n) {
+    var ret = [];
+    var i;
+    var len;
+
+    for(i = 0, len = str.length; i < len; i += n) {
+       ret.push(str.substr(i, n))
+    }
+
+    return ret;
+  };
+
+  // Send scape to string and parse fmt
   function createExport(scape) {
-    var stringScape = scape.toString();
+    var stringScape = scape.toString().replace(/,/g, '');
+
+    stringScape = chunk(stringScape, NUMCOLS * 2).join('\n');
+
     return stringScape;
   }
 
@@ -134,8 +150,8 @@ $(document).ready(function() {
     copyScape()
   });
 
+// newline  + rm commas in copy export
 // click on gridcolumn -> open modal
-
 // click on modal item -> update content in gridcolumn
 
 });
