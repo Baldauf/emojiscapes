@@ -1,5 +1,7 @@
 var $         = require("jquery"),
     clipboard = require("clipboard"),
+    PAGE      = $('.page'),
+    GRID      = $('.grid'),
     CURREDIT  = '',
     SCAPE     = [],
     NUMROWS   = 0,
@@ -11,18 +13,18 @@ function Emojiscape() {
   // ------------------------------------------------------
 
   function sizeThings() {
-    var row       = $('.grid__row'),
+    var grid      = $('.grid'),
+        row       = $('.grid__row'),
         col       = $('.grid__column'),
         chars     = $('.grid__content'),
-        colWidth  = 0;
-        colHeight = 0;
+        rowHMax = grid.height() / NUMROWS - 10,
+        colWMax = grid.width() / NUMCOLS - 10,
+        size = Math.min(rowHMax, colWMax);
 
-    row.css( "height", "calc(" + 100 / NUMROWS + "% - 10px)" );
-
-    colHeight = row.height();
-    colWidth = colHeight + 'px';
-    col.css("width", colWidth);
-    chars.css("font-size", colHeight / 4 + 'px');
+    row.css( "height", size + "px" );
+    col.css("width", size + "px");
+    col.css ("height", size + "px");
+    chars.css("font-size", size / 4 + 'px');
   }
 
   function numRows() {
@@ -82,10 +84,8 @@ function Emojiscape() {
   }
 
   function buildPage() {
-    var page = $('.page'),
-        grid = $('.grid');
-    page.removeClass('page--prep');
-    grid.html(buildScape());
+    PAGE.removeClass('page--prep');
+    GRID.html(buildScape());
   }
 
   function makeScape() {
@@ -152,6 +152,78 @@ function Emojiscape() {
   // ------------------------------------------------------
   // STORE column data
   // ------------------------------------------------------
+
+  // ------------------------------------------------------
+  // MOD Grid
+  // ------------------------------------------------------
+  function getDirection(e) {
+    var direction = $(e).parent().attr('class').replace('grid-controls__','');
+
+    return direction;
+  }
+
+  function addRow(dir) {
+    var newRow = new Array();
+
+    for(var i = 0; i < NUMCOLS; i++) {
+      newRow[i] = 'aaaaaa';
+    }
+
+    if(dir == 'top') {
+      SCAPE.unshift(newRow);
+      console.log(SCAPE)
+    } else {
+      SCAPE.push(newRow);
+      console.log(SCAPE)
+    }
+
+    GRID.html(buildScape());
+    sizeThings();
+  }
+
+  function rmRow(dir) {
+    if(dir == 'top') {
+      SCAPE.splice(0, 1);
+      console.log(SCAPE)
+    } else {
+      SCAPE.splice(-1, 1);
+      console.log(SCAPE)
+    }
+
+    GRID.html(buildScape());
+    sizeThings();
+
+    //NUMROWS = numRows();
+  }
+
+  function growGrid(e){
+    var direction = getDirection(e);
+
+    if((direction == 'top') || (direction == 'bottom')) {
+
+      NUMROWS = parseInt(NUMROWS) + 1;
+      addRow(direction);
+      NUMROWS = numRows();
+    }
+  }
+
+  function shrinkGrid(e) {
+    var direction = getDirection(e);
+
+    if((direction == 'top') || (direction == 'bottom')) {
+      NUMROWS = parseInt(NUMROWS) - 1;
+      rmRow(direction);
+      NUMROWS = numRows();
+    }
+  }
+
+  $('.grid-controls__grow').on('click', function() {
+    growGrid(this);
+  });
+
+  $('.grid-controls__shrink').on('click', function() {
+    shrinkGrid(this);
+  });
 
   // ------------------------------------------------------
   // Choose Column Data / Char Modal
@@ -299,6 +371,10 @@ function Emojiscape() {
   // add/rm rows/cols
 
   });
+
+  $(window).resize(function () {
+    sizeThings();
+  })
 
 } // END OF EMOJISCAPE OBJECT
 

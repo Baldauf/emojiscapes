@@ -457,16 +457,19 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   max-width: 80vw;
+  width: 80%;
   height: 80%;
   max-height: 100%;
   margin: 0 auto;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
 }
 
 .grid__row {
@@ -474,8 +477,8 @@ html, body {
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: center;
+      justify-content: center;
   -ms-flex-align: center;
       align-items: center;
   margin-bottom: 10px;
@@ -483,8 +486,6 @@ html, body {
 
 .grid__column {
   position: relative;
-  -ms-flex-preferred-size: 33%;
-      flex-basis: 33%;
   height: 100%;
   margin-right: 10px;
   background: #FFFFFF;
