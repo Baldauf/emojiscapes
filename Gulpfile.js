@@ -32,7 +32,8 @@ gulp.task('build-js', function() {
   return browserify(paths.jsApp)
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest(paths.jsBuild));
+    .pipe(gulp.dest(paths.jsBuild))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('build-scss', 'builds the css un-minified', function() {
