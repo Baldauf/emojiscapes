@@ -8,6 +8,7 @@ var $         = require("jquery"),
     NUMCOLS   = 0;
 
 function Emojiscape() {
+  console.groupCollapsed("Emojiscapes..ooh what fun");
   // ------------------------------------------------------
   // SIZE row/columns
   // ------------------------------------------------------
@@ -41,7 +42,7 @@ function Emojiscape() {
 
   function numCols() {
     var x = 0;
-    $('.grid__row--a').find('.grid__column').each(function() {
+    $('.grid__row:first-child').find('.grid__column').each(function() {
       x += 1;
     });
 
@@ -56,11 +57,9 @@ function Emojiscape() {
       SCAPE[i] = new Array(i);
       var scape = SCAPE[i];
       for(j = 0; j < NUMCOLS; j++) {
-        SCAPE[i][j] = j;
+        SCAPE[i][j] = "🚀";
       }
     }
-
-    console.log(SCAPE)
 
     return SCAPE;
   }
@@ -75,7 +74,7 @@ function Emojiscape() {
       gridContent += '<div class="grid__row">';
 
       for(var currCol = 0; currCol < NUMCOLS; currCol++) {
-        gridContent += '<div class="grid__column"><div class="grid__content"></div></div>';
+        gridContent += '<div class="grid__column"><div class="grid__content">'+ SCAPE[currRow][currCol]+'</div></div>';
       }
       gridContent += '</div>';
     }
@@ -107,8 +106,6 @@ function Emojiscape() {
       currRow += 1;
     });
 
-    console.log(SCAPE)
-
     return SCAPE;
   }
 
@@ -123,6 +120,8 @@ function Emojiscape() {
         setRowsVal = setRows.val();
     }
 
+    setRowsVal = parseInt(setRowsVal);
+
     console.log('There are now ' + setRowsVal + ' rows');
 
     return setRowsVal;
@@ -135,6 +134,8 @@ function Emojiscape() {
     if (setCols.val() != ''){
         setColsVal = setCols.val();
     }
+
+    setColsVal = parseInt(setColsVal);
 
     console.log('There are now ' + setColsVal + ' columns');
     
@@ -166,15 +167,13 @@ function Emojiscape() {
     var newRow = new Array();
 
     for(var i = 0; i < NUMCOLS; i++) {
-      newRow[i] = 'aaaaaa';
+      newRow[i] = '';
     }
 
     if(dir == 'top') {
       SCAPE.unshift(newRow);
-      console.log(SCAPE)
     } else {
       SCAPE.push(newRow);
-      console.log(SCAPE)
     }
 
     GRID.html(buildScape());
@@ -184,26 +183,60 @@ function Emojiscape() {
   function rmRow(dir) {
     if(dir == 'top') {
       SCAPE.splice(0, 1);
-      console.log(SCAPE)
     } else {
       SCAPE.splice(-1, 1);
-      console.log(SCAPE)
     }
 
     GRID.html(buildScape());
     sizeThings();
+  }
 
-    //NUMROWS = numRows();
+  function addCol(dir) {
+
+    if(dir == 'left') {
+      for(var i = 0; i < NUMROWS; i++) {
+        SCAPE[i].unshift('');
+      }
+
+    } else { // right
+      for(var i = 0; i < NUMROWS; i++) {
+        SCAPE[i].push('');
+      }
+    }
+
+    GRID.html(buildScape());
+    sizeThings();
+  }
+
+  function rmCol(dir) {
+    if(dir == 'left') {
+      for(var i = 0; i < NUMROWS; i++) {
+        SCAPE[i].splice(0, 1);
+      }
+    } else { // right
+      for(var i = 0; i < NUMROWS; i++) {
+        SCAPE[i].splice(-1, 1);
+      }
+    }
+
+    GRID.html(buildScape());
+    sizeThings();
   }
 
   function growGrid(e){
     var direction = getDirection(e);
 
+    // grow rows
     if((direction == 'top') || (direction == 'bottom')) {
-
-      NUMROWS = parseInt(NUMROWS) + 1;
+      NUMROWS += 1;
       addRow(direction);
       NUMROWS = numRows();
+
+    // grow columns
+    } else {
+      NUMCOLS += + 1;
+      addCol(direction);
+      NUMCOLS = numCols();
     }
   }
 
@@ -214,6 +247,11 @@ function Emojiscape() {
       NUMROWS = parseInt(NUMROWS) - 1;
       rmRow(direction);
       NUMROWS = numRows();
+    
+    } else { // shrink columns
+      NUMCOLS = parseInt(NUMCOLS) - 1;
+      rmCol(direction);
+      NUMCOLS = numCols();
     }
   }
 
@@ -319,8 +357,7 @@ function Emojiscape() {
       sizeThings();
     });
 
-    $('.grid__column').on("click", function() {
-      console.log('clickety')
+    GRID.on("click", ".grid__column", function() {
       openModal();
       CURREDIT = $(this);
     });
@@ -378,4 +415,4 @@ function Emojiscape() {
 
 } // END OF EMOJISCAPE OBJECT
 
-window.mr_scape = new Emojiscape();
+window.emoji_scape = new Emojiscape();

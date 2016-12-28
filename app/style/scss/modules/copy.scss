@@ -10,7 +10,6 @@ $_copy-offset: 25px;
 .copy-scape {
   @include flex(row, center, center);
   position: fixed;
-  z-index: 10;
   top: $_copy-offset;
   right: $_copy-offset;
   width: $_copy-size;
@@ -49,7 +48,6 @@ $_copy-offset: 25px;
   width: $_copy-size;
   top: $_copy-size;
   right: $_copy-offset;
-  z-index: -1;
   font-family: $font-mono;
   font-size: 14px;
   text-align: center;

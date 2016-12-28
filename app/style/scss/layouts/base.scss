@@ -34,12 +34,14 @@ html, body {
 
 .page__header {
   width: 100%;
+  background: white;
 }
 
 .page__body {
   position: relative;
   width: 100%;
   height: calc(100% - #{$height--full-header});
+  background: rgba($black, 0.05);
 }
 
 //------------------------------------------------------------------------------
