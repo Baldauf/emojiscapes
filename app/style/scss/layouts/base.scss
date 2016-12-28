@@ -18,16 +18,30 @@ html, body {
 .page {
   height: 100%;
   @include flex(column, center, center);
+
+  &--prep {
+    .copy-scape,
+    .copy-msg,
+    .grid-controls {
+      display: none;
+    }
+
+    .scape-create {
+      display: flex;
+    }
+  }
 }
 
 .page__header {
   width: 100%;
+  background: white;
 }
 
 .page__body {
   position: relative;
   width: 100%;
   height: calc(100% - #{$height--full-header});
+  background: rgba($black, 0.05);
 }
 
 //------------------------------------------------------------------------------
