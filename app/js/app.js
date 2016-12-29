@@ -57,7 +57,7 @@ function Emojiscape() {
       SCAPE[i] = new Array(i);
       var scape = SCAPE[i];
       for(j = 0; j < NUMCOLS; j++) {
-        SCAPE[i][j] = "🚀";
+        SCAPE[i][j] = "🐢";
       }
     }
 

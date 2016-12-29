@@ -1,6 +1,8 @@
 var gulp = require('gulp')
   , browserify = require('browserify')
   , source = require('vinyl-source-stream')
+  , buffer = require('vinyl-buffer')
+  , uglify = require('gulp-uglify')
   , sass = require('gulp-sass')
   , rename = require('gulp-rename')
   , prefix = require('gulp-autoprefixer')
@@ -32,6 +34,8 @@ gulp.task('build-js', function() {
   return browserify(paths.jsApp)
     .bundle()
     .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(paths.jsBuild))
     .pipe(browserSync.stream());
 });
