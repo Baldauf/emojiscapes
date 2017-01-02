@@ -95,33 +95,52 @@ $_rand : random();
   .grid-controls__top {
     width: $_size-large;
     height: $_size-max;
-    top: $_size-offset;
-    left: 50%;
-
+    bottom: $_size-offset * 2;
+    left: 33%;
     transform: translateX(-50%);
+
+    @include media(">=tablet") {
+      top: $_size-offset;
+      left: 50%;
+    }
   }
 
   .grid-controls__right {
     width: $_size-max;
     height: $_size-large;
-    top: 50%;
-    right: $_size-offset;
+    bottom: $_size-offset * 2;
+    right: $_size-offset * 2;
     transform: translateY(-50%) rotate(90deg);
+
+    @include media(">=tablet") {
+      top: 50%;
+      right: $_size-offset;
+    }
   }
 
   .grid-controls__bottom {
     width: $_size-large;
     height: $_size-max;
-    bottom: $_size-offset;
-    left: 50%;
+    bottom: $_size-offset * 2;
+    left: 66%;
     transform: translateX(-50%) rotate(180deg);
+
+    @include media(">=tablet") {
+      bottom: $_size-offset;
+      left: 50%;
+    }
   }
 
   .grid-controls__left {
     width: $_size-max;
     height: $_size-large;
-    top: 50%;
-    left: $_size-offset;
+    bottom: $_size-offset * 2;
+    left: $_size-offset * 2;
     transform: translateY(-50%) rotate(-90deg);
+
+    @include media(">=tablet") {
+      top: 50%;
+      left: $_size-offset;
+    }
   }
 }

@@ -6,8 +6,14 @@
 //------------------------------------------------------------------------------
 // Header
 .page-header {
-  @include flex(column, center, center);
+  @include flex(column, center, flex-start);
   height: $height--full-header;
+  padding-left: 30px;
+
+  @include media(">=tablet") {
+    @include flex(column, center, center);
+    padding-left: 0;
+  }
 
   .page-header__link {
     display: block;

@@ -40,9 +40,9 @@ gulp.task('build-js', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build-scss', 'builds the css un-minified', function() {
+gulp.task('build-scss', 'builds the css', function() {
   return gulp.src(paths.scssMain)
-    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(sass({outputStyle: 'compressed'}))
     .pipe(prefix({browsers: ['last 2 versions']}))
     .pipe(gulp.dest(paths.css))
     .pipe(browserSync.stream());
