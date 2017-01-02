@@ -18,6 +18,7 @@ html, body {
 .page {
   height: 100%;
   @include flex(column, center, center);
+  background: white;
 
   &--prep {
     .copy-scape,
@@ -34,7 +35,6 @@ html, body {
 
 .page__header {
   width: 100%;
-  background: white;
 }
 
 .page__body {
