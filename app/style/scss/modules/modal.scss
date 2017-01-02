@@ -49,10 +49,15 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  top: 60px;
-  right: 60px;
+  top: 10px;
+  right: 10px;
   border-radius: 50%;
   background: rgba($black, 0.9);
+
+  @include media(">=tablet") {
+    top: 60px;
+    right: 60px;
+  }
 
   &:hover {
     background: $black;
