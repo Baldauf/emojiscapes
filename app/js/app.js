@@ -61,25 +61,42 @@ function Emojiscape() {
     for(var i = 0; i < NUMROWS; i++) {
       SCAPE[i] = new Array(i);
       var scape = SCAPE[i];
-      for(j = 0; j < NUMCOLS; j++) {
-        // SCAPE[i][j] = "🐢";
-        switch(true) {
-          case TEMPLATE == 'beach':
-            SCAPE[i][j] = "⛱";
-            break;
-          case TEMPLATE == 'space':
-            SCAPE[i][j] = "🚀";
-            break;
-          case TEMPLATE == 'garden':
-            SCAPE[i][j] = "🌻";
-            break;
-          case TEMPLATE == 'city':
-            SCAPE[i][j] = "🏙";
-            break;
-          default:
-            SCAPE[i][j] = "";
-        }
-      }
+    }
+
+    switch(true) {
+      case TEMPLATE == 'beach':
+        SCAPE[0][0] = "🐟";
+        SCAPE[0][1] = "🌊";
+        SCAPE[0][2] = "🐠";
+        SCAPE[0][3] = "🌊";
+
+        SCAPE[1][0] = "🐳";
+        SCAPE[1][1] = "🌊";
+        SCAPE[1][2] = "🌊";
+        SCAPE[1][3] = "🐡";
+
+        SCAPE[2][0] = "🌊";
+        SCAPE[2][1] = "🌊";
+        SCAPE[2][2] = "🐢";
+        SCAPE[2][3] = "🌊";
+
+        SCAPE[3][0] = "⛱";
+        SCAPE[3][1] = "🌴";
+        SCAPE[3][2] = "🎋";
+        SCAPE[3][3] = "🏖";
+
+        break;
+      case TEMPLATE == 'space':
+        SCAPE[i][j] = "🚀";
+        break;
+      case TEMPLATE == 'garden':
+        SCAPE[i][j] = "🌻";
+        break;
+      case TEMPLATE == 'city':
+        SCAPE[i][j] = "🏙";
+        break;
+      default:
+        SCAPE[i][j] = "";
     }
 
     return SCAPE;
