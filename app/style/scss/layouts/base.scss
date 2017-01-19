@@ -28,7 +28,7 @@ html, body {
     }
 
     .scape-create {
-      display: flex;
+      @include flex(column, center, flex-start);
     }
   }
 }
