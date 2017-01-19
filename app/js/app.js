@@ -65,35 +65,92 @@ function Emojiscape() {
 
     switch(true) {
       case TEMPLATE == 'beach':
-        SCAPE[0][0] = "🐟";
-        SCAPE[0][1] = "🌊";
-        SCAPE[0][2] = "🐠";
-        SCAPE[0][3] = "🌊";
+        SCAPE[0][0] = "⬜";
+        SCAPE[0][1] = "⬜";
+        SCAPE[0][2] = "🌞";
+        SCAPE[0][3] = "⬜";
 
-        SCAPE[1][0] = "🐳";
-        SCAPE[1][1] = "🌊";
-        SCAPE[1][2] = "🌊";
-        SCAPE[1][3] = "🐡";
+        SCAPE[1][0] = "🌴";
+        SCAPE[1][1] = "⛱";
+        SCAPE[1][2] = "🌴";
+        SCAPE[1][3] = "🌴";
 
         SCAPE[2][0] = "🌊";
         SCAPE[2][1] = "🌊";
         SCAPE[2][2] = "🐢";
         SCAPE[2][3] = "🌊";
 
-        SCAPE[3][0] = "⛱";
-        SCAPE[3][1] = "🌴";
-        SCAPE[3][2] = "🎋";
-        SCAPE[3][3] = "🏖";
+        SCAPE[3][0] = "🌊";
+        SCAPE[3][1] = "🌊";
+        SCAPE[3][2] = "🌊";
+        SCAPE[3][3] = "🌊";
 
         break;
       case TEMPLATE == 'space':
-        SCAPE[i][j] = "🚀";
+        SCAPE[0][0] = "*";
+        SCAPE[0][1] = "˚";
+        SCAPE[0][2] = "⭐️";
+        SCAPE[0][3] = "  ";
+
+        SCAPE[1][0] = "*";
+        SCAPE[1][1] = "  ";
+        SCAPE[1][2] = "🚀";
+        SCAPE[1][3] = "✺";
+
+        SCAPE[2][0] = "*";
+        SCAPE[2][1] = "  ";
+        SCAPE[2][2] = "·";
+        SCAPE[2][3] = "✷";
+
+        SCAPE[3][0] = "✵";
+        SCAPE[3][1] = "✺";
+        SCAPE[3][2] = "  ";
+        SCAPE[3][3] = "✺";
+
         break;
       case TEMPLATE == 'garden':
-        SCAPE[i][j] = "🌻";
+        SCAPE[0][0] = "🌱";
+        SCAPE[0][1] = "🌱";
+        SCAPE[0][2] = "🌱";
+        SCAPE[0][3] = "🌱";
+
+        SCAPE[1][0] = "🌱";
+        SCAPE[1][1] = "🌹";
+        SCAPE[1][2] = "🌱";
+        SCAPE[1][3] = "🌱";
+
+        SCAPE[2][0] = "🌱";
+        SCAPE[2][1] = "🌱";
+        SCAPE[2][2] = "🍄";
+        SCAPE[2][3] = "🌱";
+
+        SCAPE[3][0] = "🌻";
+        SCAPE[3][1] = "🌱";
+        SCAPE[3][2] = "🌱";
+        SCAPE[3][3] = "🌱";
+
         break;
       case TEMPLATE == 'city':
-        SCAPE[i][j] = "🏙";
+        SCAPE[0][0] = "🌕";
+        SCAPE[0][1] = "  ";
+        SCAPE[0][2] = "⭐️";
+        SCAPE[0][3] = "✨";
+
+        SCAPE[1][0] = "  ";
+        SCAPE[1][1] = "⭐️";
+        SCAPE[1][2] = "  ";
+        SCAPE[1][3] = "🌟";
+
+        SCAPE[2][0] = "⭐️";
+        SCAPE[2][1] = "  ";
+        SCAPE[2][2] = "  ";
+        SCAPE[2][3] = "  ";
+
+        SCAPE[3][0] = "🏛";
+        SCAPE[3][1] = "🏢";
+        SCAPE[3][2] = "🏪";
+        SCAPE[3][3] = "🏢";
+
         break;
       default:
         SCAPE[i][j] = "";
