@@ -5,10 +5,11 @@ var $         = require("jquery"),
     CURREDIT  = '',
     SCAPE     = [],
     NUMROWS   = 0,
-    NUMCOLS   = 0;
+    NUMCOLS   = 0,
+    TEMPLATE  = '';
 
 function Emojiscape() {
-  console.groupCollapsed("Emojiscapes..ooh what fun");
+  //console.groupCollapsed("Emojiscapes..ooh what fun");
   // ------------------------------------------------------
   // SIZE row/columns
   // ------------------------------------------------------
@@ -51,14 +52,108 @@ function Emojiscape() {
     return x;
   }
 
+  function chooseTemplate(btn) {
+    TEMPLATE = $(btn).attr("class").split('--')[1];
+  }
+
   // create the array size from initial vals
   function sizeScape() {
     for(var i = 0; i < NUMROWS; i++) {
       SCAPE[i] = new Array(i);
       var scape = SCAPE[i];
-      for(j = 0; j < NUMCOLS; j++) {
-        SCAPE[i][j] = "🐢";
-      }
+    }
+
+    switch(true) {
+      case TEMPLATE == 'beach':
+        SCAPE[0][0] = "⬜";
+        SCAPE[0][1] = "⬜";
+        SCAPE[0][2] = "🌞";
+        SCAPE[0][3] = "⬜";
+
+        SCAPE[1][0] = "🌴";
+        SCAPE[1][1] = "⛱";
+        SCAPE[1][2] = "🌴";
+        SCAPE[1][3] = "🌴";
+
+        SCAPE[2][0] = "🌊";
+        SCAPE[2][1] = "🌊";
+        SCAPE[2][2] = "🐢";
+        SCAPE[2][3] = "🌊";
+
+        SCAPE[3][0] = "🌊";
+        SCAPE[3][1] = "🌊";
+        SCAPE[3][2] = "🌊";
+        SCAPE[3][3] = "🌊";
+
+        break;
+      case TEMPLATE == 'space':
+        SCAPE[0][0] = "*";
+        SCAPE[0][1] = "˚";
+        SCAPE[0][2] = "⭐️";
+        SCAPE[0][3] = "  ";
+
+        SCAPE[1][0] = "*";
+        SCAPE[1][1] = "  ";
+        SCAPE[1][2] = "🚀";
+        SCAPE[1][3] = "✺";
+
+        SCAPE[2][0] = "*";
+        SCAPE[2][1] = "  ";
+        SCAPE[2][2] = "·";
+        SCAPE[2][3] = "✷";
+
+        SCAPE[3][0] = "✵";
+        SCAPE[3][1] = "✺";
+        SCAPE[3][2] = "  ";
+        SCAPE[3][3] = "✺";
+
+        break;
+      case TEMPLATE == 'garden':
+        SCAPE[0][0] = "🌱";
+        SCAPE[0][1] = "🌱";
+        SCAPE[0][2] = "🌱";
+        SCAPE[0][3] = "🌱";
+
+        SCAPE[1][0] = "🌱";
+        SCAPE[1][1] = "🌹";
+        SCAPE[1][2] = "🌱";
+        SCAPE[1][3] = "🌱";
+
+        SCAPE[2][0] = "🌱";
+        SCAPE[2][1] = "🌱";
+        SCAPE[2][2] = "🍄";
+        SCAPE[2][3] = "🌱";
+
+        SCAPE[3][0] = "🌻";
+        SCAPE[3][1] = "🌱";
+        SCAPE[3][2] = "🌱";
+        SCAPE[3][3] = "🌱";
+
+        break;
+      case TEMPLATE == 'city':
+        SCAPE[0][0] = "🌕";
+        SCAPE[0][1] = "  ";
+        SCAPE[0][2] = "⭐️";
+        SCAPE[0][3] = "✨";
+
+        SCAPE[1][0] = "  ";
+        SCAPE[1][1] = "⭐️";
+        SCAPE[1][2] = "  ";
+        SCAPE[1][3] = "🌟";
+
+        SCAPE[2][0] = "⭐️";
+        SCAPE[2][1] = "  ";
+        SCAPE[2][2] = "  ";
+        SCAPE[2][3] = "  ";
+
+        SCAPE[3][0] = "🏛";
+        SCAPE[3][1] = "🏢";
+        SCAPE[3][2] = "🏪";
+        SCAPE[3][3] = "🏢";
+
+        break;
+      default:
+        SCAPE[i][j] = "";
     }
 
     return SCAPE;
@@ -112,35 +207,43 @@ function Emojiscape() {
   // ------------------------------------------------------
   // BUILD row/column data
   // ------------------------------------------------------
-  function buildRows() {
-    var setRows = $('#scape-create__rows').find('input'),
-        setRowsVal = setRows.attr('placeholder');
+  // function buildRows() {
+  //   var setRows = $('#scape-create__rows').find('input'),
+  //       setRowsVal = setRows.attr('placeholder');
 
-    if (setRows.val() != ''){
-        setRowsVal = setRows.val();
-    }
+  //   if (setRows.val() != ''){
+  //       setRowsVal = setRows.val();
+  //   }
 
-    setRowsVal = parseInt(setRowsVal);
+  //   setRowsVal = parseInt(setRowsVal);
 
-    console.log('There are now ' + setRowsVal + ' rows');
+  //   console.log('There are now ' + setRowsVal + ' rows');
 
-    return setRowsVal;
+  //   return setRowsVal;
+  // }
+
+  function buildRows () {
+    return 4;
   }
 
   function buildCols() {
-    var setCols = $('#scape-create__columns').find('input'),
-        setColsVal = setCols.attr('placeholder');
-
-    if (setCols.val() != ''){
-        setColsVal = setCols.val();
-    }
-
-    setColsVal = parseInt(setColsVal);
-
-    console.log('There are now ' + setColsVal + ' columns');
-    
-    return setColsVal;
+    return 4;
   }
+
+  // function buildCols() {
+  //   var setCols = $('#scape-create__columns').find('input'),
+  //       setColsVal = setCols.attr('placeholder');
+
+  //   if (setCols.val() != ''){
+  //       setColsVal = setCols.val();
+  //   }
+
+  //   setColsVal = parseInt(setColsVal);
+
+  //   console.log('There are now ' + setColsVal + ' columns');
+    
+  //   return setColsVal;
+  // }
 
   // ------------------------------------------------------
   // GET row/column data
@@ -348,10 +451,14 @@ function Emojiscape() {
   $(document).ready(function() {
     //console.groupCollapsed("Emojiscapes comin attcha");
     
-    $('.scape-create__btn').click(function(){
+    $('.scape-create__btn').click(function(e){
       NUMROWS  = buildRows();
       NUMCOLS  = buildCols();
 
+      e.preventDefault();
+
+      chooseTemplate(this);
+      console.log(TEMPLATE)
       sizeScape();
       buildPage();
       sizeThings();

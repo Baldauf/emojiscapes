@@ -18,7 +18,7 @@ $_copy-offset: 25px;
   &__info {
     margin-bottom: 40px;
     font-family: $font-mono;
-    font-size: 14px;
+    font-size: 30px;
 
     span {
       display: block;
@@ -26,18 +26,18 @@ $_copy-offset: 25px;
   }
 
   &__btn {
-    width: $_copy-size;
-    margin-top: 20px;
-    padding: 20px 60px;
-    color: $black;
-    background: #FFFFFF;
-    background-image: linear-gradient(-180deg, rgba(0,0,0, 0) 0%, rgba(0,0,0, 0.02) 98%);
-    border: 1px solid rgba(151,151,151, 0.60);
-    box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.10), inset 0 -4px 0 0 rgba(0,0,0, 0.06);
-    border-radius: 3px;
-    font-family: $font-mono;
+    @extend .grid__column;
+    @include flex(row, center, center);
+    flex: 1;
+    font-size: 30px;
     text-align: center;
     text-decoration: none;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
 
     &:hover {
       cursor: pointer;
@@ -46,6 +46,16 @@ $_copy-offset: 25px;
     &:active {
       box-shadow: 0 2px 3px 0 rgba(0,0,0,0.05), inset 0 -2px 0 0 rgba(0,0,0,0.06);
     }
+  }
+
+  &__info {
+    font-size: 30px;
+  }
+
+  &__templates {
+    @include flex(row, center, center);
+    width: 100%;
+    margin-top: 30px;
   }
 
   label span {
